@@ -18,6 +18,22 @@ from loss_functions import *
 
 
 
+
+image_filename = '0001_001_S6_00100_00060_3200_L'
+
+# IMAGE LOADING AND PRE PROCESSING
+img = cv.imread(rf'data\SIDD_Small_sRGB_Only\Data\{image_filename}\GT_SRGB_010.PNG')
+img_noisy = cv.imread(rf'data\SIDD_Small_sRGB_Only\Data\{image_filename}\NOISY_SRGB_010.PNG')
+
+# make the images smaller
+img = cv.resize(img, None, fx=0.25, fy=0.25, interpolation=cv.INTER_LINEAR)
+img_noisy = cv.resize(img_noisy, None, fx=0.25, fy=0.25, interpolation=cv.INTER_LINEAR)
+
+img_gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+img_rgb = cv.cvtColor(img, cv.COLOR_BGR2RGB)
+img_hsv = cv.cvtColor(img, cv.COLOR_BGR2HSV)
+
+
 #
 # =========PRE PROCESSING=========
 # plot HSV values of the image

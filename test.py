@@ -1,14 +1,11 @@
-import pyswarm
-from pyswarm import pso
-from scipy.optimize import differential_evolution
+import cv2 as cv
+import numpy as np
+import matplotlib.pyplot as plt
+from loss_functions import *
 
-def obj_func(x, sel):
-    if sel:
-        return x**2
-    else:
-        return -x**2
 
-sel = True
-result = differential_evolution(obj_func, [(-10, 10)], args=(sel,), popsize=10000, maxiter=100, mutation=0.8, recombination=0.7)
+filename = rf'data\SIDD_Small_sRGB_Only\Data\0076_004_N6_03200_00320_3200_L'
+img = cv.imread(rf'{filename}\GT_SRGB_010.PNG')
+noisy_img = cv.imread(rf'{filename}\NOISY_SRGB_010.PNG')
 
-print(result)
+print(calculate_psnr(img, noisy_img))
